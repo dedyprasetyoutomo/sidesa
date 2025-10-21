@@ -21,7 +21,7 @@ class ResidentController extends Controller
 
      public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validatedData = $request->validate([
             'nik' => ['required', 'min:16', 'max:16'],
             'name' => ['required', 'max:100'],
             'gender' => ['required', Rule::in(['male', 'female'])],
@@ -34,7 +34,7 @@ class ResidentController extends Controller
             'phone' =>['nullable', 'max:15'],
             'status' => ['required', Rule::in(['active', 'moved', 'deceased'])],
         ]);
-        Resident::create($request->validated());
+        Resident::create($validatedData);
         return redirect('/resident')->with('success','Berhasil menambahkan data');
     }
 
