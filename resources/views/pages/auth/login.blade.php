@@ -16,6 +16,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <style>
         body {
@@ -44,7 +46,15 @@
 </head>
 
 <body>
-
+    @if ($errors->any())
+         <script>
+        Swal.fire({
+            title: "Terjadi Kesalahan!",
+            text: "@foreach($errors->all() as $error){{ $error }} {{ $loop->last ? '.' : ',' }}  @endforeach",
+            icon: "error"
+        });
+    </script>
+    @endif
     <div class="container">
         <div class="row justify-content-center">
         <div class="col-xl-5 col-lg-6 col-md-8 mt-5">
@@ -74,7 +84,7 @@
                                                 </span>
                                             </div>
                                             <input type="email" name="email" class="form-control border-start-0 rounded-end-pill px-4 py-2"
-                                                placeholder="Email" required>
+                                                placeholder="Email">
                                         </div>
                                     </div>
 
@@ -87,7 +97,7 @@
                                                 </span>
                                             </div>
                                             <input type="password" name="password" class="form-control border-start-0 px-4 py-2"
-                                                id="password-field" placeholder="Password" required>
+                                                id="password-field" placeholder="Password">
                                             <div class="input-group-append">
                                                 <span class="input-group-text bg-light border-start-0 rounded-end-pill" onclick="togglePassword()" style="cursor: pointer;">
                                                     <i class="fas fa-eye text-primary" id="toggle-icon"></i>
