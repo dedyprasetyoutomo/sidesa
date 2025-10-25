@@ -12,6 +12,11 @@
                 'icon' => 'fas fa-fw fa-table',
             ],
             (object)[
+                'title' => 'Data Daftar Akun',
+                'path' => 'account-list',
+                'icon' => 'fas fa-fw fa-address-card',
+            ],
+            (object)[
                 'title' => 'Permintaan Akun',
                 'path' => 'account-request',
                 'icon' => 'fas fa-fw fa-users',
@@ -31,7 +36,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
                 <div class="sidebar-brand-icon rotate-n-15">
                     {{-- <i class="fas fa-laugh-wink"></i> --}}
                 </div>
@@ -55,6 +60,7 @@
             {{-- <div class="sidebar-heading">
                 Management Data
             </div> --}}
+            @auth
             @foreach ($menus[auth()->user()->role_id] as $menu)
             <!-- Nav Item - Tables -->
             <li class="nav-item {{ request()->is($menu->path . '*') ? 'active':'' }}">
@@ -63,6 +69,7 @@
                     <span>{{ $menu->title }}</span></a>
             </li>
             @endforeach
+            @endauth
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
