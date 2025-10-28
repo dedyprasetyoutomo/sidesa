@@ -30,6 +30,14 @@ Route::delete('/resident/{id}',[ResidentController::class, 'destroy'])->middlewa
 Route::get('/account-request',[UserController::class, 'account_request_view'])->middleware('role:Admin');
 Route::post('/account-request/approval/{id}',[UserController::class, 'account_approval'])->middleware('role:Admin');
 
+//List data penduduk_ list view
+Route::get('/account-list',[UserController::class, 'account_list_view'])->middleware('role:Admin');
+
+// navbar
+Route::get('/profile', [UserController::class, 'profile_view'])->middleware('role:Admin,User');
+Route::get('/change-password', [UserController::class, 'change_password_view'])->middleware('role:Admin,User');
+
+
 
 
 
