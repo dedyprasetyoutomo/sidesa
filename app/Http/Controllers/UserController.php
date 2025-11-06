@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function account_request_view()
     {
-        $user = User::where('status', 'submitted')->get();
+        $user = User::where('status', 'submitted')->paginate(5);
         $resident = Resident::where('user_id', null)->get();
 
         return view('pages.account-request.index',[
@@ -54,7 +54,7 @@ class UserController extends Controller
 
     public function account_list_view()
     {
-        $users = User::where('role_id', 2)->where('status','!=', 'submitted')->get();
+        $users = User::where('role_id', 2)->where('status','!=', 'submitted')->paginate(5);
         return view('pages.account-list.index',[
             'users' => $users,
         ]);
